@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+---
+
+<Layout>
+	<div
+		class="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center mt-2"
+	>
+		<h1 class="text-4xl m-2 font-bold text-gray-900">Bhavesh Shinde</h1>
+		<h1 class="text-3xl m-2 font-bold text-gray-800" id="typing"></h1>
+		<p class="text-xl font-semibold leading-relaxed m-2">
+			Welcome to my Portfolio 👋
+		</p>
+		<p class="text-lg font-semibold leading-relaxed m-2">
+			I'm passionate Javascript Developer interested in building clean ,
+			scalable and efficient modern web applications , with the strong
+			grasp of HTML , CSS , Javascript , React ! Lorem ipsum dolor sit
+			amet, consectetur adipisicing elit. Repellat, est! Lorem ipsum dolor
+			sit amet consectetur adipisicing elit. Quia, nesciunt? Lorem ipsum
+			dolor sit amet consectetur adipisicing elit. Animi ullam non ex
+			voluptatem, a doloremque ea? Illo dolor excepturi corrupti!
+		</p>
+		<a
+			class="inline-block px-6 py-2 my-4 rounded-lg backgrop-blur-sm bg-white/20 text-white border border-white/30 hover:bg-white/30 transition duration-300"
+			href="/projects">View My Projects</a
+		>
+	</div>
+
+	<script is:client>
+		const texts = [
+			"I am a Javascript Developer . . .",
+			"I am a React Developer . . .",
+			"I am a Frontend Developer . . .",
+			"I am a SQL Developer . . .",
+		];
+
+		const typingElement = document.getElementById("typing");
+
+		let currentTextIndex = 0;
+		let currentCharIndex = 0;
+		let isDeleting = false;
+
+		function type() {
+			const currentText = texts[currentTextIndex];
+			if (isDeleting) {
+				currentCharIndex--;
+			} else {
+				currentCharIndex++;
+			}
+
+			typingElement.textContent = currentText.slice(0, currentCharIndex);
+
+			let delay = 50;
+
+			if (!isDeleting && currentCharIndex === currentText.length) {
+				delay = 1000;
+				isDeleting = true;
+			} else if (isDeleting && currentCharIndex === 0) {
+				isDeleting = false;
+				currentTextIndex = (currentTextIndex + 1) % texts.length;
+
+				delay = 50;
+			}
+
+			setTimeout(type, delay);
+		}
+
+		type();
+	</script>
+</Layout>

@@ -1,0 +1,11 @@
+---
+import "../styles/global.css";
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="bg-gray-900 text-white p-4 flex gap-4">
+    <a href="/" class={`hover:underline ${currentPath === "/" ? "text-yellow-300 ":"text-white"}`} >Home</a>
+    <a href="/projects" class={`hover:underline ${currentPath === "/projects" ? "text-yellow-300 ":"text-white"}`} >Projects</a>
+    <a href="/contact"  class={`hover:underline ${currentPath === "/contact" ? "text-yellow-300":"text-white"}`}  >Contact</a>
+    
+</nav>
